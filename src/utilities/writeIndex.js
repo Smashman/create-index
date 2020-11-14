@@ -21,6 +21,8 @@ export default (directoryPaths, options = {}) => {
     const indexCode = createIndexCode(siblings, optionsWithConfig);
     const indexFilePath = path.resolve(directoryPath, options.outputFile || 'index.js');
 
-    fs.writeFileSync(indexFilePath, indexCode);
+    if (indexCode) {
+      fs.writeFileSync(indexFilePath, indexCode);
+    }
   });
 };

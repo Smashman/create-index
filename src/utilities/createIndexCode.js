@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import camelcase from 'camelcase';
 
 const safeVariableName = (fileName) => {
   const indexOfDot = fileName.indexOf('.');
@@ -14,7 +15,7 @@ const buildExportBlock = (files) => {
   let importBlock;
 
   importBlock = _.map(files, (fileName) => {
-    return 'export { default as ' + safeVariableName(fileName) + ' } from \'./' + fileName + '\';';
+    return 'export { default as ' + camelcase(safeVariableName(fileName)) + ' } from \'./' + fileName + '\';';
   });
 
   importBlock = importBlock.join('\n');
@@ -49,6 +50,9 @@ export default (filePaths, options = {}) => {
     const sortedFilePaths = filePaths.sort();
 
     code += buildExportBlock(sortedFilePaths) + '\n\n';
+  }
+  else {
+    return null;
   }
 
   return code;

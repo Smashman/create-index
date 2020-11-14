@@ -6,6 +6,7 @@
   },
   "bin": "./dist/bin/create-index.js",
   "dependencies": {
+    "camelcase": "^6.2.0",
     "chalk": "^4.0.0",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",

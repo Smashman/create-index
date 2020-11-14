@@ -73,7 +73,9 @@ export default (directoryPaths, options = {}) => {
 
     /* eslint-enable no-empty */
 
-    fs.writeFileSync(indexFilePath, indexCode);
+    if (indexCode) {
+      fs.writeFileSync(indexFilePath, indexCode);
+    }
 
     if (existingIndexCode && existingIndexCode === indexCode) {
       log(indexFilePath, chalk.yellow('[index has not changed]'));
